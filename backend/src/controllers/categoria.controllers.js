@@ -26,19 +26,20 @@ const postBodegas = (req, res) => {
     //     FECHA_ELIMINACION: 'deleted_at'
     // }
 
-    const { ID, NOMBRE, RESPONSABLE, ESTADO, CREADOR, ACTUALIZADOR, FECHA_CREACION, FECHA_ACTUALIZACION, FECHA_ELIMINACION } = req.query
-
+    const { ID, NOMBRE, RESPONSABLE, ESTADO, CREADOR, ACTUALIZADOR, FECHA_CREACION, FECHA_ACTUALIZACION, FECHA_ELIMINACION } = req.body;
 
     connection.query(/*sql*/`
-    
-
-    INSERT INTO bodegas (id,nombre,id_responsable,estado,created_by,update_by,created_at,updated_at,deleted_at) VALUES (?,?,?,?,?,?,?,?,?)`, [ID, NOMBRE, RESPONSABLE, ESTADO, CREADOR, ACTUALIZADOR, FECHA_CREACION, FECHA_ACTUALIZACION, FECHA_ELIMINACION], (err, data, fil) => {
-        if (err) {
-            res.send(err)
-        } else {
-            res.json(data)
+      INSERT INTO bodegas (id, nombre, id_responsable, estado, created_by, update_by, created_at, updated_at, deleted_at) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [ID, NOMBRE, RESPONSABLE, ESTADO, CREADOR, ACTUALIZADOR, FECHA_CREACION, FECHA_ACTUALIZACION, FECHA_ELIMINACION],
+        (err, data, fil) => {
+            if (err) {
+                res.send(err);
+            } else {
+                res.json(data);
+            }
         }
-    });
+    );
 }
 
 
