@@ -4,6 +4,10 @@ const router = Router();
 
 //4. ENPOINT QUE PERMITE LISTAR TODAS LAS BODEGAS ORDENADAS ALFABETICAMENTE
 router.get("/allStorageNames", categoriaController.getStorageNames);
+
+//5. ENDPOINT QUE PERMITE CREAR UNA BODEGA
+router.post("/postBodegas", categoriaController.postBodegas);
+
 //6. ENDPOINT QUE PERMITE LITAR PRODUCTOS EN ORDEN DESCENDENTE POR EL CAMPO TOTAL
 router.get("/allProducts", categoriaController.getAllProducts);
 
