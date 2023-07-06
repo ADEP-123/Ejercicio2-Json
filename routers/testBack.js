@@ -4,13 +4,19 @@ const testBackCampus = Router();
 let con = undefined;
 
 testBackCampus.use("/", (req, res, next) => {
-    con= mysql.createPool(JSON.parse(process.env.MY_CONNECT));
+    let myConfig = JSON.parse(process.env.MY_CONNECT)
+    con = mysql.createPool(myConfig);
     next();
 });
 
 testBackCampus.get("/", (req, res,) => {
-    con.query();
-    res.send("Get")
+
+    con.query(/*sql*/`SELECT id_producto, SUM(cantidad) AS Total
+    FROM inventarios
+    GROUP BY id_producto
+    ORDER BY Total DESC`, (err, data, fil) => {
+        res.send(data)
+    });
 });
 
 // testBackCampus.post("/", (req, res) => {
@@ -20,3 +26,4 @@ testBackCampus.get("/", (req, res,) => {
 // testBackCampus.put("/", (req, res) => {
 //     res.send("Soy put")
 // });
+export default testBackCampus;
