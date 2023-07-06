@@ -1,8 +1,20 @@
 import getConnection from "../db/database.js";
+const connection = getConnection();
+
+//4. QUERY QUE PERMITE LISTAR TODAS LAS BODEGAS ORDENADAS ALFABETICAMENTE
+const getStorageNames = (req, res) => {
+    connection.query(/*sql*/`SELECT * FROM bodegas ORDER BY nombre`, (err, data, fil) => {
+        if (err) {
+            res.send(err)
+        } else {
+            res.json(data)
+        }
+    });
+}
 
 
+//6. QUERY QUE PERMITE LITAR PRODUCTOS EN ORDEN DESCENDENTE POR EL CAMPO TOTAL
 const getAllProducts = (req, res) => {
-    const connection = getConnection();
     connection.query(/*sql*/`SELECT id_producto, SUM(cantidad) AS Total
     FROM inventarios
     GROUP BY id_producto
@@ -16,6 +28,7 @@ const getAllProducts = (req, res) => {
 }
 
 export const methodsHTTP = {
-    getAllProducts: getAllProducts
+    getAllProducts: getAllProducts,
+    getStorageNames: getStorageNames
 }
 
