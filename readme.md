@@ -4,10 +4,10 @@ Ejercicio realizado con node.js para interactuar con una base de datos
 1. Clonar el repositorio en su dispositivo
 2. Ingresar a la carpeta backend > scripts y seleccionar el archivo scriptDatabase 
 3. Ejecutar paso a paso el archivo para crear la base de datos de manera local, para esto recuerde que primero debe seguir los siguientes pasos:
-3.1. Corrobore tener Apache y Mysql instalados y corriendo en su ordenador
-3.2. Ejecute el comando "mysql -u root -p;"
-3.3. Si no muestra ningun error, Ejecute el comando "SHOW DATABASES;" y asegurese de no tener ninguna base de datos con el nombre "db_prueba_backend_sql"
-3.4. Ahora ejecute uno a uno los comandos del archivo scriptDatabase
+   - 3.1. Corrobore tener Apache y Mysql instalados y corriendo en su ordenador
+   - 3.2. Ejecute el comando "mysql -u root -p;"
+   - 3.3. Si no muestra ningun error, Ejecute el comando "SHOW DATABASES;" y asegurese de no tener ninguna base de datos con el nombre "db_prueba_backend_sql"
+   - 3.4. Ahora ejecute uno a uno los comandos del archivo scriptDatabase
 4. Revise que las configuraciones del archivo .env coincidan con las de su ordenador, si no es el caso cambielas
 5. Abra un nuevo bloque de comandos desde el archivo del repositorio, si esta usando visual estudio puede hacerlo desde la pestaña terminal > new terminal
 6. Con el comando "cd backend"  ingrese a la carpeta backend
@@ -15,11 +15,11 @@ Ejercicio realizado con node.js para interactuar con una base de datos
 8. Ejecute el comando "npm run dev"
 9. La consola le mostrara la direccion http donde esta corriendo el servidor, la cual de manera predeterminada es "http://127.9.63.7:5000/testback"
 10. Para interactuar con los enpoints es recomendable usar una extension como Thunder Client, para ello siga los siguientes pasos:
-10.1. Descarge la extension Thunder Client desde visual studio code
-10.2. En el panel izquierdo seleccione la extension Thunder Client y posteriormente en new request
-10.3. Coloque la url en el panel de direccion de Thunder Client con el endpoint especifico
-10.4. Seleccione el metodo de la peticion segun corresponda
-10.5. Si es un metodo POST envie un objeto en formato JSON con la informacion requerida en la pestaña body de Thunder Client
+   - 10.1. Descarge la extension Thunder Client desde visual studio code
+   - 10.2. En el panel izquierdo seleccione la extension Thunder Client y posteriormente en new request
+   - 10.3. Coloque la url en el panel de direccion de Thunder Client con el endpoint especifico
+   - 10.4. Seleccione el metodo de la peticion segun corresponda
+   - 10.5. Si es un metodo POST envie un objeto en formato JSON con la informacion requerida en la pestaña body de Thunder Client
 ### Endpoints:
 1. /allStorageNames:
    - UrlDefault: http://127.9.63.7:5000/testback/allStorageNames
