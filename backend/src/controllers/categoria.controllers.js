@@ -60,6 +60,19 @@ const getAllProducts = (req, res) => {
 }
 
 //7. QUERY QUE PERMITA INSERTAR UN PRODUCTO Y ASIGNE UNA CANTIDAD INICIAL DEL MISMO EN LA TABLA INVENTARIOS EN UNA DE LAS BODEGAS POR DAFAULT
+/**
+ * ? Datos de entrada : 
+ ** {
+ **"IDPRODUCTO": Entero Grande ej (184),
+ **"NOMBRE": Varchar ej ("Nombre del Producto"),
+ **"DESCRIPCION": Varchar ej ("Descripción del Producto"),
+ **"ESTADO": Entero ej (1),
+ **"CREADOR": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
+ **"ACTUALIZADOR": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
+ **"IDINVENTARIO":  Entero Grande ej (190),
+ ** }
+ *? La bodega determinada a la que llegara es la 60, y la cantidad predeterminada es 10
+ */
 const newProduct = (req, res) => {
     const { IDPRODUCTO, NOMBRE, DESCRIPCION, ESTADO, CREADOR, ACTUALIZADOR, IDINVENTARIO } = req.body;
 
@@ -68,7 +81,7 @@ const newProduct = (req, res) => {
         if (err) {
             res.status(500).json({ error: err.message });
         } else {
-  
+
             connection.query(/*sql*/`
             INSERT INTO inventarios (id, id_bodega, id_producto, cantidad, created_by, update_by) VALUES (?,60, ?, 10, ?, ?)`,
                 [IDINVENTARIO, IDPRODUCTO, CREADOR, ACTUALIZADOR],
@@ -85,10 +98,63 @@ const newProduct = (req, res) => {
     );
 };
 
+//8. QUERY QUE PERMITA INSERTAR REGISTROS EN LA TABLA INVENTARIOS, DEBE VALIDAR SI LA COMBINACION BODEGA PRODUCTO YA EXISTE
+/**
+ * ? Datos de entrada : 
+ ** {
+ **"ID_PRODUCTO": Entero Grande ej (11),
+ **"ID_BODEGA": Entero Grande ej (12),,
+ **"CANTIDAD": Entero  ej (60),,
+ ** }
+ */
+const newInventario = (req, res) => {
+
+    const { ID_PRODUCTO, ID_BODEGA, CANTIDAD } = req.body;
+
+    connection.query(/*SQL*/`
+    SELECT * FROM inventarios WHERE id_bodega = ${ID_BODEGA} AND id_producto = ${ID_PRODUCTO}`, (err, data) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+        } else {
+            const existe = data[0] == null ? false : true
+            if (existe == true) {
+                connection.query(/*sql*/`
+                UPDATE inventarios SET cantidad = ${CANTIDAD} WHERE id_bodega = ${ID_BODEGA} AND id_producto = ${ID_PRODUCTO}`, (err, data) => {
+                    if (err) {
+                        res.status(500).json({ error: err.message });
+                    } else {
+                        res.json({
+                            Existe: existe,
+                            message: 'Inventario actualizado exitosamente'
+                        });
+                    }
+                }
+                );
+            } else {
+                connection.query(/*sql*/`
+                INSERT INTO inventarios (id_bodega, id_producto, cantidad) VALUES (?,?,?)`, [ID_BODEGA, ID_PRODUCTO, CANTIDAD], (err, data) => {
+                    if (err) {
+                        res.status(500).json({ error: err.message });
+                    } else {
+                        res.json({
+                            Existe: existe,
+                            message: 'Inventario creado exitosamente'
+                        });
+                    }
+                }
+                );
+            }
+        }
+    }
+    );
+};
+
+
 export const methodsHTTP = {
     getAllProducts: getAllProducts,
     getStorageNames: getStorageNames,
     postBodegas: postBodegas,
-    newProduct: newProduct
+    newProduct: newProduct,
+    newInventario: newInventario
 }
 

@@ -14,4 +14,7 @@ router.get("/allProducts", categoriaController.getAllProducts);
 //7. ENDPOINT QUE PERMITA INSERTAR UN PRODUCTO Y ASIGNE UNA CANTIDAD INICIAL DEL MISMO EN LA TABLA INVENTARIOS EN UNA DE LAS BODEGAS POR DAFAULT
 router.post("/newProduct", categoriaController.newProduct);
 
+//8. QUERY QUE PERMITA INSERTAR REGISTROS EN LA TABLA INVENTARIOS, DEBE VALIDAR SI LA COMBINACION BODEGA PRODUCTO YA EXISTE
+router.post("/newInventario", categoriaController.newInventario);
+
 export default router;
