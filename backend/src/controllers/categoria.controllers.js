@@ -103,8 +103,8 @@ const newProduct = (req, res) => {
  * ? Datos de entrada : 
  ** {
  **"ID_PRODUCTO": Entero Grande ej (11),
- **"ID_BODEGA": Entero Grande ej (12),,
- **"CANTIDAD": Entero  ej (60),,
+ **"ID_BODEGA": Entero Grande ej (12),
+ **"CANTIDAD": Entero  ej (60)
  ** }
  */
 const newInventario = (req, res) => {
@@ -154,8 +154,9 @@ const newInventario = (req, res) => {
  * ? Datos de entrada : 
  ** {
  **"ID_PRODUCTO": Entero Grande ej (11),
- **"ID_BODEGA": Entero Grande ej (12),,
- **"CANTIDAD": Entero  ej (60),,
+ **"ID_BODEGA1": (Bodega de donde sale) Entero Grande ej (12),
+ **"ID_BODEGA2": (Bodega a donde entra) Entero Grande ej (12),
+ **"CANTIDAD": Entero  ej (60)
  ** }
  */
 const trasladoBodega = (req, res) => {
