@@ -33,7 +33,6 @@ Ejercicio realizado con node.js para interactuar con una base de datos
    - Body esperado:
      ```json
      {
-         "ID": Entero Grande ej (63),
          "NOMBRE": Varchar ej ("Emily"),
          "RESPONSABLE": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
          "ESTADO": Entero ej (1),
@@ -57,13 +56,11 @@ Ejercicio realizado con node.js para interactuar con una base de datos
    - Body esperado:
      ```json
      {
-         "IDPRODUCTO": Entero Grande ej (184),
          "NOMBRE": Varchar ej ("Nombre del Producto"),
          "DESCRIPCION": Varchar ej ("Descripción del Producto"),
          "ESTADO": Entero ej (1),
          "CREADOR": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
-         "ACTUALIZADOR": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
-         "IDINVENTARIO":  Entero Grande ej (190)
+         "ACTUALIZADOR": Entero grande, debe coincidir con un id existente de la tabla users ej (11)
      }
      ```
 

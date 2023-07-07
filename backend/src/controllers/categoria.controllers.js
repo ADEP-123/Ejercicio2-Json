@@ -16,7 +16,6 @@ const getStorageNames = (req, res) => {
 /**
  * ? Datos de entrada : 
  ** {
- **"ID": Entero Grande ej (63),
  **"NOMBRE": Varchar ej ("Emily"),
  **"RESPONSABLE": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
  **"ESTADO": Entero ej (1),
@@ -28,12 +27,12 @@ const getStorageNames = (req, res) => {
  ** }
  */
 const postBodegas = (req, res) => {
-    const { ID, NOMBRE, RESPONSABLE, ESTADO, CREADOR, ACTUALIZADOR, FECHA_CREACION, FECHA_ACTUALIZACION, FECHA_ELIMINACION } = req.body;
+    const { NOMBRE, RESPONSABLE, ESTADO, CREADOR, ACTUALIZADOR, FECHA_CREACION, FECHA_ACTUALIZACION, FECHA_ELIMINACION } = req.body;
 
     connection.query(/*sql*/`
-      INSERT INTO bodegas (id, nombre, id_responsable, estado, created_by, update_by, created_at, updated_at, deleted_at) 
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [ID, NOMBRE, RESPONSABLE, ESTADO, CREADOR, ACTUALIZADOR, FECHA_CREACION, FECHA_ACTUALIZACION, FECHA_ELIMINACION],
+      INSERT INTO bodegas (nombre, id_responsable, estado, created_by, update_by, created_at, updated_at, deleted_at) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        [NOMBRE, RESPONSABLE, ESTADO, CREADOR, ACTUALIZADOR, FECHA_CREACION, FECHA_ACTUALIZACION, FECHA_ELIMINACION],
         (err, data, fil) => {
             if (err) {
                 res.send(err);
@@ -63,28 +62,26 @@ const getAllProducts = (req, res) => {
 /**
  * ? Datos de entrada : 
  ** {
- **"IDPRODUCTO": Entero Grande ej (184),
  **"NOMBRE": Varchar ej ("Nombre del Producto"),
  **"DESCRIPCION": Varchar ej ("Descripción del Producto"),
  **"ESTADO": Entero ej (1),
  **"CREADOR": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
- **"ACTUALIZADOR": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
- **"IDINVENTARIO":  Entero Grande ej (190),
+ **"ACTUALIZADOR": Entero grande, debe coincidir con un id existente de la tabla users ej (11)
  ** }
  *? La bodega determinada a la que llegara es la 60, y la cantidad predeterminada es 10
  */
 const newProduct = (req, res) => {
-    const { IDPRODUCTO, NOMBRE, DESCRIPCION, ESTADO, CREADOR, ACTUALIZADOR, IDINVENTARIO } = req.body;
+    const { NOMBRE, DESCRIPCION, ESTADO, CREADOR, ACTUALIZADOR } = req.body;
 
     connection.query(/*SQL*/`
-    INSERT INTO productos (id, nombre, descripcion, estado, created_by, update_by) VALUES (?, ?, ?, ?, ?, ?)`, [IDPRODUCTO, NOMBRE, DESCRIPCION, ESTADO, CREADOR, ACTUALIZADOR], (err, data) => {
+    INSERT INTO productos (nombre, descripcion, estado, created_by, update_by) VALUES (?, ?, ?, ?, ?)`, [NOMBRE, DESCRIPCION, ESTADO, CREADOR, ACTUALIZADOR], (err, data) => {
         if (err) {
             res.status(500).json({ error: err.message });
         } else {
 
             connection.query(/*sql*/`
-            INSERT INTO inventarios (id, id_bodega, id_producto, cantidad, created_by, update_by) VALUES (?,60, ?, 10, ?, ?)`,
-                [IDINVENTARIO, IDPRODUCTO, CREADOR, ACTUALIZADOR],
+            INSERT INTO inventarios (id_bodega, id_producto, cantidad, created_by, update_by) VALUES (60, ?, 10, ?, ?)`,
+                [IDPRODUCTO, CREADOR, ACTUALIZADOR],
                 (err, data) => {
                     if (err) {
                         res.status(500).json({ error: err.message });
