@@ -21,65 +21,77 @@ Ejercicio realizado con node.js para interactuar con una base de datos
 10.4. Seleccione el metodo de la peticion segun corresponda
 10.5. Si es un metodo POST envie un objeto en formato JSON con la informacion requerida en la pestaña body de Thunder Client
 ### Endpoints:
-1. /allStorageNames: 
-    UrlDefault: http://127.9.63.7:5000/testback/allStorageNames
-    Metodo: get
-    Descripcion: Endpoint que permite listar todas las bodegas alfabeticamente
+1. /allStorageNames:
+   - UrlDefault: http://127.9.63.7:5000/testback/allStorageNames
+   - Metodo: get
+   - Descripcion: Endpoint que permite listar todas las bodegas alfabéticamente
 
-2. /postBodegas: 
-    UrlDefault: http://127.9.63.7:5000/testback/postBodegas
-    Metodo: post
-    Descripcion: Endpoint que permite crear una bodega
-    Body esperado:  {
-                        "ID": Entero Grande ej (63),
-                        "NOMBRE": Varchar ej ("Emily"),
-                        "RESPONSABLE": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
-                        "ESTADO": Entero ej (1),
-                        "CREADOR": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
-                        "ACTUALIZADOR": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
-                        "FECHA_CREACION": Date-Time ej ("2023-05-25 01:02:57"),
-                        "FECHA_ACTUALIZACION": Date-Time ej ("2023-05-25 01:02:57"),
-                        "FECHA_ELIMINACION": Date-Time ej ("2023-05-25 01:02:59")
-                    }
+2. /postBodegas:
+   - UrlDefault: http://127.9.63.7:5000/testback/postBodegas
+   - Metodo: post
+   - Descripcion: Endpoint que permite crear una bodega
+   - Body esperado:
+     ```json
+     {
+         "ID": Entero Grande ej (63),
+         "NOMBRE": Varchar ej ("Emily"),
+         "RESPONSABLE": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
+         "ESTADO": Entero ej (1),
+         "CREADOR": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
+         "ACTUALIZADOR": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
+         "FECHA_CREACION": Date-Time ej ("2023-05-25 01:02:57"),
+         "FECHA_ACTUALIZACION": Date-Time ej ("2023-05-25 01:02:57"),
+         "FECHA_ELIMINACION": Date-Time ej ("2023-05-25 01:02:59")
+     }
+     ```
 
-3. /allProducts: 
-    UrlDefault: http://127.9.63.7:5000/testback/allProducts
-    Metodo: get
-    Descripcion: Endpoint que permite listar Productos en orden descendente segun el total de ellos entre todas las bodegas
+3. /allProducts:
+   - UrlDefault: http://127.9.63.7:5000/testback/allProducts
+   - Metodo: get
+   - Descripcion: Endpoint que permite listar Productos en orden descendente según el total de ellos entre todas las bodegas
 
-4. /newProduct: 
-    UrlDefault: http://127.9.63.7:5000/testback/newProduct
-    Metodo: post
-    Descripcion: Endpoint que permite insertar un prodcuto y asignar una cantidad inicial (10) del mismo en la tabla inventarios en la bodega 60 por default
-    Body esperado:  {
-                        "IDPRODUCTO": Entero Grande ej (184),
-                        "NOMBRE": Varchar ej ("Nombre del Producto"),
-                        "DESCRIPCION": Varchar ej ("Descripción del Producto"),
-                        "ESTADO": Entero ej (1),
-                        "CREADOR": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
-                        "ACTUALIZADOR": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
-                        "IDINVENTARIO":  Entero Grande ej (190)
-                    }
+4. /newProduct:
+   - UrlDefault: http://127.9.63.7:5000/testback/newProduct
+   - Metodo: post
+   - Descripcion: Endpoint que permite insertar un producto y asignar una cantidad inicial (10) del mismo en la tabla inventarios en la bodega 60 por defecto
+   - Body esperado:
+     ```json
+     {
+         "IDPRODUCTO": Entero Grande ej (184),
+         "NOMBRE": Varchar ej ("Nombre del Producto"),
+         "DESCRIPCION": Varchar ej ("Descripción del Producto"),
+         "ESTADO": Entero ej (1),
+         "CREADOR": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
+         "ACTUALIZADOR": Entero grande, debe coincidir con un id existente de la tabla users ej (11),
+         "IDINVENTARIO":  Entero Grande ej (190)
+     }
+     ```
 
-5. /newInventario: 
-    UrlDefault: http://127.9.63.7:5000/testback/newInventario
-    Metodo: post
-    Descripcion: Endpoint que permite insertar un registro en la tabla inventarios, valida si la combinacion bodega/producto existe
-    Body esperado:  {
-                        "ID_PRODUCTO": Entero Grande ej (11),
-                        "ID_BODEGA": Entero Grande ej (12),
-                        "CANTIDAD": Entero  ej (60)
-                    }
-6. /trasBodega: 
-    UrlDefault: http://127.9.63.7:5000/testback/trasBodega
-    Metodo: post
-    Descripcion: Endpoint que permite trasladar cantidades de un producto de una bodega a otra, ademas valida que la cantidad a trasladar exista en la bodega de donde sale
-    Body esperado:  {
-                        "ID_PRODUCTO": Entero Grande ej (11),
-                        "ID_BODEGA1": (Bodega de donde sale) Entero Grande ej (12),
-                        "ID_BODEGA2": (Bodega a donde entra) Entero Grande ej (12),
-                        "CANTIDAD": Entero  ej (60)
-                    }
+5. /newInventario:
+   - UrlDefault: http://127.9.63.7:5000/testback/newInventario
+   - Metodo: post
+   - Descripcion: Endpoint que permite insertar un registro en la tabla inventarios, valida si la combinación bodega/producto existe
+   - Body esperado:
+     ```json
+     {
+         "ID_PRODUCTO": Entero Grande ej (11),
+         "ID_BODEGA": Entero Grande ej (12),
+         "CANTIDAD": Entero  ej (60)
+     }
+     ```
+6. /trasBodega:
+   - UrlDefault: http://127.9.63.7:5000/testback/trasBodega
+   - Metodo: post
+   - Descripcion: Endpoint que permite trasladar cantidades de un producto de una bodega a otra, ademas valida que la cantidad a trasladar exista en la bodega de donde sale
+   - Body esperado:  
+     ```json
+     {
+         "ID_PRODUCTO": Entero Grande ej (11),
+         "ID_BODEGA1": (Bodega de donde sale) Entero Grande ej (12),
+         "ID_BODEGA2": (Bodega a donde entra) Entero Grande ej (12),
+         "CANTIDAD": Entero ej (60)
+     }
+     ```
 Nota: Si desea ejecutar los ejemplos tenga en cuenta que puede que los id ya existan, sin embargo para hacerlo al enviar el objeto por el body unicamente deje depues de cada una de las propiedades del objeto los valores que se encuentran entre parentesis, mantenga las comillas si dichos valores las tienen.
 
 # Creador: Andres David Elizalde Peralta
