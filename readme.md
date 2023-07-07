@@ -52,7 +52,7 @@ Ejercicio realizado con node.js para interactuar con una base de datos
 4. /newProduct:
    - UrlDefault: http://127.9.63.7:5000/testback/newProduct
    - Metodo: post
-   - Descripcion: Endpoint que permite insertar un producto y asignar una cantidad inicial (10) del mismo en la tabla inventarios en la bodega 60 por defecto
+   - Descripcion: Endpoint que permite insertar un producto y asignar una cantidad inicial (10) del mismo en la tabla inventarios en la bodega 50 por defecto
    - Body esperado:
      ```json
      {

@@ -37,7 +37,7 @@ const postBodegas = (req, res) => {
             if (err) {
                 res.send(err);
             } else {
-                res.json(data);
+                res.json({ message: 'Data ingresada con exito', data: data });
             }
         }
     );
@@ -78,10 +78,10 @@ const newProduct = (req, res) => {
         if (err) {
             res.status(500).json({ error: err.message });
         } else {
-
+            const idProducto = data.insertId
             connection.query(/*sql*/`
-            INSERT INTO inventarios (id_bodega, id_producto, cantidad, created_by, update_by) VALUES (60, ?, 10, ?, ?)`,
-                [IDPRODUCTO, CREADOR, ACTUALIZADOR],
+             INSERT INTO inventarios (id_bodega, id_producto, cantidad, created_by, update_by) VALUES (50, ?, 10, ?, ?)`,
+                [idProducto, CREADOR, ACTUALIZADOR],
                 (err, data) => {
                     if (err) {
                         res.status(500).json({ error: err.message });
@@ -174,7 +174,7 @@ const trasladoBodega = (req, res) => {
                 //     data: data,
                 //     cantidadEnBodegaOrigen: cantBodOrig
                 // })
-                if (cantBodOrig <= CANTIDAD) {
+                if (cantBodOrig < CANTIDAD) {
                     res.json({ message: `La bodega de origen solo contiene ${cantBodOrig} de dicho producto` })
                 } else {
                     connection.query(/*sql*/`
@@ -222,7 +222,7 @@ const trasladoBodega = (req, res) => {
                                                     connection.query(/*sql*/`
                                                     INSERT INTO inventarios (id,id_bodega, id_producto, cantidad) VALUES (100,?,?,?)`, [ID_BODEGA2, ID_PRODUCTO, CANTIDAD], (err, data) => {
                                                         if (err) {
-                                                            res.status(500).json({ error: err.message , aca:"aca"});
+                                                            res.status(500).json({ error: err.message, aca: "aca" });
                                                         } else {
                                                             res.json({ message: `${CANTIDAD} del producto ${ID_PRODUCTO} movido existosamente de la bodega ${ID_BODEGA1} a la bodega ${ID_BODEGA2}` });
                                                         }
