@@ -149,12 +149,116 @@ const newInventario = (req, res) => {
     );
 };
 
+//9. QUERY QUE PERMITA TRASLADAR CANTIDADES DE UN PRODUCTO DE UNA BODEGA A OTRA, DEBE VALIDAD QUE LA CANTIDAD A TRASLADAR EXISTA EN AL BODEGA DE DONDE SALE SI NO ENVIAR UN MENSAJE
+/**
+ * ? Datos de entrada : 
+ ** {
+ **"ID_PRODUCTO": Entero Grande ej (11),
+ **"ID_BODEGA": Entero Grande ej (12),,
+ **"CANTIDAD": Entero  ej (60),,
+ ** }
+ */
+const trasladoBodega = (req, res) => {
+
+    const { ID_PRODUCTO, ID_BODEGA1, ID_BODEGA2, CANTIDAD, } = req.body;
+
+    connection.query(/*SQL*/`
+    SELECT * FROM inventarios WHERE id_bodega = ${ID_BODEGA1} AND id_producto = ${ID_PRODUCTO}`, (err, data) => {
+        if (err) {
+            console.log("hay error en el primero");
+            res.status(500).json({ error: err.message });
+        } else {
+            const existe1 = data[0] == null ? false : true
+            // const horaCreac = data[0].created_at
+            if (existe1 == true) {
+                const cantBodOrig = data[0].cantidad;
+                // res.json({
+                //     data: data,
+                //     cantidadEnBodegaOrigen: cantBodOrig
+                // })
+                if (cantBodOrig <= CANTIDAD) {
+                    res.json({ message: `La bodega de origen solo contiene ${cantBodOrig} de dicho producto` })
+                } else {
+                    connection.query(/*sql*/`
+                    SELECT id_bodega FROM inventarios WHERE id_producto = ${ID_PRODUCTO}`, (err, data) => {
+                        if (err) {
+                            res.status(500).json({ error: err.message });
+                        } else {
+                            let existeEnBodDest = false
+                            data.forEach(element => {
+                                if (element.id_bodega == ID_BODEGA2) {
+                                    existeEnBodDest = true
+                                }
+                            });
+                            if (existeEnBodDest == true) {
+                                connection.query(/*sql*/`
+                                UPDATE inventarios SET cantidad = cantidad - ${CANTIDAD} WHERE id_bodega = ${ID_BODEGA1} AND id_producto = ${ID_PRODUCTO}`, (err, data) => {
+                                    if (err) {
+                                        res.status(500).json({ error: err.message });
+                                    } else {
+                                        connection.query(/*sql*/`
+                                        UPDATE inventarios SET cantidad = cantidad + ${CANTIDAD} WHERE id_bodega = ${ID_BODEGA2} AND id_producto = ${ID_PRODUCTO}`, (err, data) => {
+                                            if (err) {
+                                                res.status(500).json({ error: err.message });
+                                            } else {
+                                                res.json({ message: `${CANTIDAD} del producto ${ID_PRODUCTO} movido existosamente de la bodega ${ID_BODEGA1} a la bodega ${ID_BODEGA2}` });
+                                            }
+                                        }
+                                        );
+                                    }
+                                }
+                                );
+                            } else {
+                                connection.query(/*sql*/`
+                                SELECT * FROM bodegas WHERE id = ${ID_BODEGA2}`, (err, data) => {
+                                    if (err) {
+                                        res.status(500).json({ error: err.message });
+                                    } else {
+                                        const existe2 = data[0] == null ? false : true
+                                        if (existe2 == true) {
+                                            connection.query(/*sql*/`
+                                            UPDATE inventarios SET cantidad = cantidad - ${CANTIDAD} WHERE id_bodega = ${ID_BODEGA1} AND id_producto = ${ID_PRODUCTO}`, (err, data) => {
+                                                if (err) {
+                                                    res.status(500).json({ error: err.message });
+                                                } else {
+                                                    connection.query(/*sql*/`
+                                                    INSERT INTO inventarios (id,id_bodega, id_producto, cantidad) VALUES (100,?,?,?)`, [ID_BODEGA2, ID_PRODUCTO, CANTIDAD], (err, data) => {
+                                                        if (err) {
+                                                            res.status(500).json({ error: err.message , aca:"aca"});
+                                                        } else {
+                                                            res.json({ message: `${CANTIDAD} del producto ${ID_PRODUCTO} movido existosamente de la bodega ${ID_BODEGA1} a la bodega ${ID_BODEGA2}` });
+                                                        }
+                                                    }
+                                                    );
+                                                }
+                                            }
+                                            );
+                                        } else {
+                                            res.json({ message: `La bodega destino (${ID_BODEGA2}) no existe, primero debe crearla` });
+                                        }
+                                    }
+                                }
+                                );
+                            }
+                        }
+                    }
+                    );
+                }
+            } else {
+                res.json({ message: `La bodega origen (${ID_BODEGA1}) no existe o no tiene un producto con ese id (${ID_PRODUCTO})` });
+            }
+        }
+    }
+    );
+};
+
 
 export const methodsHTTP = {
     getAllProducts: getAllProducts,
     getStorageNames: getStorageNames,
     postBodegas: postBodegas,
     newProduct: newProduct,
-    newInventario: newInventario
+    newInventario: newInventario,
+    trasladoBodega: trasladoBodega
 }
 
