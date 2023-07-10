@@ -11,7 +11,7 @@ Ejercicio realizado con node.js para interactuar con una base de datos
 4. Revise que las configuraciones del archivo .env coincidan con las de su ordenador, si no es el caso cambielas
 5. Abra un nuevo bloque de comandos desde el archivo del repositorio, si esta usando visual estudio puede hacerlo desde la pestaña terminal > new terminal
 6. Con el comando "cd backend"  ingrese a la carpeta backend
-7. Ejecute el comando "npm update"
+7. Ejecute el comando "npm install"
 8. Ejecute el comando "npm run dev"
 9. La consola le mostrara la direccion http donde esta corriendo el servidor, la cual de manera predeterminada es "http://127.9.63.7:5000/testback"
 10. Para interactuar con los enpoints es recomendable usar una extension como Thunder Client, para ello siga los siguientes pasos:
