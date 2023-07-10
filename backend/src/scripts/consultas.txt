@@ -1,5 +1,0 @@
-USE db_prueba_backend_sql;
-SELECT id_producto, SUM(cantidad) AS Total
-FROM inventarios
-GROUP BY id_producto
-ORDER BY Total DESC;
