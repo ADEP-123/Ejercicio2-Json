@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import { plainToClass } from "class-transformer";
 import { productos } from '../controllerTS/productos.js';
 import { bodegas } from "../controllerTS/bodegas.js";
+import { inventarios } from "../controllerTS/inventarios.js";
 const connection = getConnection();
 
 
@@ -145,8 +146,8 @@ const newProduct = (req, res) => {
  ** }
  */
 const newInventario = (req, res) => {
-
-    const { ID_PRODUCTO, ID_BODEGA, CANTIDAD } = req.body;
+    const { ID_PRODUCTO, ID_BODEGA } = req.query;
+    const { CANTIDAD } = req.body;
 
     connection.query(/*SQL*/`
     SELECT * FROM inventarios WHERE id_bodega = ${ID_BODEGA} AND id_producto = ${ID_PRODUCTO}`, (err, data) => {
@@ -169,7 +170,8 @@ const newInventario = (req, res) => {
                 );
             } else {
                 connection.query(/*sql*/`
-                INSERT INTO inventarios (id_bodega, id_producto, cantidad) VALUES (?,?,?)`, [ID_BODEGA, ID_PRODUCTO, CANTIDAD], (err, data) => {
+                INSERT INTO inventarios (id_bodega, id_producto, cantidad) VALUES (?,?,?)`, [ID_BODEGA, ID_PRODUCTO, CANTIDAD
+                ], (err, data) => {
                     if (err) {
                         res.status(500).json({ error: err.message });
                     } else {

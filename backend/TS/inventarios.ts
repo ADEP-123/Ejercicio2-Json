@@ -6,23 +6,23 @@ export class inventarios {
     ID: number;
 
     @Expose({ name: "ID_BODEGA" })
-    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro1` } }, { toClassOnly: true })
     ID_BODEGA: number;
 
     @Expose({ name: "ID_PRODUCTO" })
-    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro2` } }, { toClassOnly: true })
     ID_PRODUCTO: number;
 
     @Expose({ name: "CANTIDAD" })
-    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro3` } }, { toClassOnly: true })
     CANTIDAD: number;
 
     @Expose({ name: "CREADOR" })
-    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro4` } }, { toClassOnly: true })
     CREADOR: number;
 
     @Expose({ name: "ACTUALIZADOR" })
-    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro5` } }, { toClassOnly: true })
     ACTUALIZADOR: number;
 
     @Expose({ name: "FECHA_CREACION" })

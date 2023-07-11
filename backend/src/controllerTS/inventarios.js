@@ -31,7 +31,7 @@ __decorate([
     Transform(({ value, key }) => { if (Math.floor(value))
         return Math.floor(value);
     else
-        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
+        throw { status: 400, message: `Error en tipo de parametro1` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "ID_BODEGA", void 0);
 __decorate([
@@ -39,7 +39,7 @@ __decorate([
     Transform(({ value, key }) => { if (Math.floor(value))
         return Math.floor(value);
     else
-        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
+        throw { status: 400, message: `Error en tipo de parametro2` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "ID_PRODUCTO", void 0);
 __decorate([
@@ -47,7 +47,7 @@ __decorate([
     Transform(({ value, key }) => { if (Math.floor(value))
         return Math.floor(value);
     else
-        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
+        throw { status: 400, message: `Error en tipo de parametro3` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "CANTIDAD", void 0);
 __decorate([
@@ -55,7 +55,7 @@ __decorate([
     Transform(({ value, key }) => { if (Math.floor(value))
         return Math.floor(value);
     else
-        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
+        throw { status: 400, message: `Error en tipo de parametro4` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "CREADOR", void 0);
 __decorate([
@@ -63,7 +63,7 @@ __decorate([
     Transform(({ value, key }) => { if (Math.floor(value))
         return Math.floor(value);
     else
-        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
+        throw { status: 400, message: `Error en tipo de parametro5` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "ACTUALIZADOR", void 0);
 __decorate([
