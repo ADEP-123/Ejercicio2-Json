@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Expose, Transform } from "class-transformer";
 export class inventarios {
-    constructor(id, id_bodega, id_producto, cantidad, created_by, update_by, created_at, updated_at, deleted_at) {
+    constructor(id = 2, id_bodega = 1, id_producto = 1, cantidad = 1, created_by = 0, update_by = 0, created_at = new Date(), updated_at = new Date(), deleted_at = new Date()) {
         this.ID = id;
         this.ID_BODEGA = id_bodega;
         this.ID_PRODUCTO = id_producto;
@@ -28,42 +28,42 @@ __decorate([
 ], inventarios.prototype, "ID", void 0);
 __decorate([
     Expose({ name: "ID_BODEGA" }),
-    Transform(({ value, key }) => { if (Math.floor(value))
+    Transform(({ value, key }) => { if (Math.floor(value) || value == null)
         return Math.floor(value);
     else
-        throw { status: 400, message: `Error en tipo de parametro1` }; }, { toClassOnly: true }),
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "ID_BODEGA", void 0);
 __decorate([
     Expose({ name: "ID_PRODUCTO" }),
-    Transform(({ value, key }) => { if (Math.floor(value))
+    Transform(({ value, key }) => { if (Math.floor(value) || value == null)
         return Math.floor(value);
     else
-        throw { status: 400, message: `Error en tipo de parametro2` }; }, { toClassOnly: true }),
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "ID_PRODUCTO", void 0);
 __decorate([
     Expose({ name: "CANTIDAD" }),
-    Transform(({ value, key }) => { if (Math.floor(value))
+    Transform(({ value, key }) => { if (Math.floor(value) || value == null)
         return Math.floor(value);
     else
-        throw { status: 400, message: `Error en tipo de parametro3` }; }, { toClassOnly: true }),
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "CANTIDAD", void 0);
 __decorate([
     Expose({ name: "CREADOR" }),
-    Transform(({ value, key }) => { if (Math.floor(value))
+    Transform(({ value, key }) => { if (Math.floor(value) || value == null)
         return Math.floor(value);
     else
-        throw { status: 400, message: `Error en tipo de parametro4` }; }, { toClassOnly: true }),
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "CREADOR", void 0);
 __decorate([
     Expose({ name: "ACTUALIZADOR" }),
-    Transform(({ value, key }) => { if (Math.floor(value))
+    Transform(({ value, key }) => { if (Math.floor(value) || value == null)
         return Math.floor(value);
     else
-        throw { status: 400, message: `Error en tipo de parametro5` }; }, { toClassOnly: true }),
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "ACTUALIZADOR", void 0);
 __decorate([
