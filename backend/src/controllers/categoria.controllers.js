@@ -1,6 +1,7 @@
 import getConnection from "../db/database.js";
 import 'reflect-metadata';
 import { plainToClass } from "class-transformer";
+import { productos } from '../controllerTS/productos.js';
 import { bodegas } from "../controllerTS/bodegas.js";
 const connection = getConnection();
 
@@ -62,7 +63,7 @@ const postBodegas = (req, res) => {
             if (err) {
                 res.send(err);
             } else {
-                
+
                 res.json({ message: 'Data ingresada con exito', data: data });
             }
         }
@@ -98,9 +99,22 @@ const getAllProducts = (req, res) => {
  */
 const newProduct = (req, res) => {
     const { NOMBRE, DESCRIPCION, ESTADO, CREADOR, ACTUALIZADOR } = req.body;
+    const producto = plainToClass(productos, {
+        NOMBRE,
+        DESCRIPCION,
+        ESTADO,
+        CREADOR,
+        ACTUALIZADOR
+    })
 
     connection.query(/*SQL*/`
-    INSERT INTO productos (nombre, descripcion, estado, created_by, update_by) VALUES (?, ?, ?, ?, ?)`, [NOMBRE, DESCRIPCION, ESTADO, CREADOR, ACTUALIZADOR], (err, data) => {
+    INSERT INTO productos (nombre, descripcion, estado, created_by, update_by) VALUES (?, ?, ?, ?, ?)`, [
+        producto.NOMBRE,
+        producto.DESCRIPCION,
+        producto.ESTADO,
+        producto.CREADOR,
+        producto.ACTUALIZADOR
+    ], (err, data) => {
         if (err) {
             res.status(500).json({ error: err.message });
         } else {

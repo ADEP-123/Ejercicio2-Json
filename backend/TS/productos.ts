@@ -6,7 +6,7 @@ export class productos {
     ID: number;
 
     @Expose({ name: "NOMBRE" })
-    @Transform(({ value, key }) => { if (/^[a-z A-Z]+$/.test(value)) return value; else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
+    @Type(() => String)
     NOMBRE: string;
 
     @Expose({ name: "DESCRIPCION" })

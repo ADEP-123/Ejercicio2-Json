@@ -28,10 +28,7 @@ __decorate([
 ], productos.prototype, "ID", void 0);
 __decorate([
     Expose({ name: "NOMBRE" }),
-    Transform(({ value, key }) => { if (/^[a-z A-Z]+$/.test(value))
-        return value;
-    else
-        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
+    Type(() => String),
     __metadata("design:type", String)
 ], productos.prototype, "NOMBRE", void 0);
 __decorate([

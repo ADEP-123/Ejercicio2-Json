@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { methodsHTTP as categoriaController } from '../controllers/categoria.controllers.js';
 import proxybodegas from '../middlewares/proxybodegas.js';
+import proxyproductos from '../middlewares/proxyproductos.js';
 const router = Router();
 
 //4. ENPOINT QUE PERMITE LISTAR TODAS LAS BODEGAS ORDENADAS ALFABETICAMENTE
@@ -13,7 +14,7 @@ router.post("/postBodegas", proxybodegas, categoriaController.postBodegas);
 router.get("/allProducts", categoriaController.getAllProducts);
 
 //7. ENDPOINT QUE PERMITA INSERTAR UN PRODUCTO Y ASIGNE UNA CANTIDAD INICIAL DEL MISMO EN LA TABLA INVENTARIOS EN UNA DE LAS BODEGAS POR DAFAULT
-router.post("/newProduct", categoriaController.newProduct);
+router.post("/newProduct", proxyproductos, categoriaController.newProduct);
 
 //8. ENDPOINT QUE PERMITA INSERTAR REGISTROS EN LA TABLA INVENTARIOS, DEBE VALIDAR SI LA COMBINACION BODEGA PRODUCTO YA EXISTE
 router.post("/newInventario", categoriaController.newInventario);
