@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Expose, Type, Transform } from "class-transformer";
+import { Expose, Transform } from "class-transformer";
 export class bodegas {
     constructor(id, nombre, id_responsable, estado, created_by, update_by, created_at, updated_at, deleted_at) {
         this.ID = id;
@@ -23,32 +23,47 @@ export class bodegas {
 }
 __decorate([
     Expose({ name: "ID" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value }) => parseInt(value) ? value : "Error", { toClassOnly: true }),
     __metadata("design:type", Number)
 ], bodegas.prototype, "ID", void 0);
 __decorate([
     Expose({ name: "NOMBRE" }),
-    Type(() => String),
+    Transform(({ value, key }) => { if (/^[a-z A-Z]+$/.test(value))
+        return value;
+    else
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", String)
 ], bodegas.prototype, "NOMBRE", void 0);
 __decorate([
     Expose({ name: "RESPONSABLE" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value, key }) => { if (Math.floor(value))
+        return Math.floor(value);
+    else
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], bodegas.prototype, "RESPONSABLE", void 0);
 __decorate([
     Expose({ name: "ESTADO" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value, key }) => { if (Math.floor(value))
+        return Math.floor(value);
+    else
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], bodegas.prototype, "ESTADO", void 0);
 __decorate([
     Expose({ name: "CREADOR" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value, key }) => { if (Math.floor(value))
+        return Math.floor(value);
+    else
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], bodegas.prototype, "CREADOR", void 0);
 __decorate([
     Expose({ name: "ACTUALIZADOR" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value, key }) => { if (Math.floor(value))
+        return Math.floor(value);
+    else
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], bodegas.prototype, "ACTUALIZADOR", void 0);
 __decorate([

@@ -1,5 +1,9 @@
 import getConnection from "../db/database.js";
+import 'reflect-metadata';
+import { plainToClass } from "class-transformer";
+import { bodegas } from "../controllerTS/bodegas.js";
 const connection = getConnection();
+
 
 //4. QUERY QUE PERMITE LISTAR TODAS LAS BODEGAS ORDENADAS ALFABETICAMENTE
 const getStorageNames = (req, res) => {
@@ -27,16 +31,38 @@ const getStorageNames = (req, res) => {
  ** }
  */
 const postBodegas = (req, res) => {
+
     const { NOMBRE, RESPONSABLE, ESTADO, CREADOR, ACTUALIZADOR, FECHA_CREACION, FECHA_ACTUALIZACION, FECHA_ELIMINACION } = req.body;
+
+    const bodega = plainToClass(bodegas, {
+        NOMBRE,
+        RESPONSABLE,
+        ESTADO,
+        CREADOR,
+        ACTUALIZADOR,
+        FECHA_CREACION,
+        FECHA_ACTUALIZACION,
+        FECHA_ELIMINACION
+    })
 
     connection.query(/*sql*/`
       INSERT INTO bodegas (nombre, id_responsable, estado, created_by, update_by, created_at, updated_at, deleted_at) 
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-        [NOMBRE, RESPONSABLE, ESTADO, CREADOR, ACTUALIZADOR, FECHA_CREACION, FECHA_ACTUALIZACION, FECHA_ELIMINACION],
+        [
+            bodega.NOMBRE,
+            bodega.RESPONSABLE,
+            bodega.ESTADO,
+            bodega.CREADOR,
+            bodega.ACTUALIZADOR,
+            bodega.FECHA_CREACION,
+            bodega.FECHA_ACTUALIZACION,
+            bodega.FECHA_ELIMINACION
+        ],
         (err, data, fil) => {
             if (err) {
                 res.send(err);
             } else {
+                
                 res.json({ message: 'Data ingresada con exito', data: data });
             }
         }
