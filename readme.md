@@ -20,7 +20,12 @@ Ejercicio realizado con node.js para interactuar con una base de datos
    - 10.3. Coloque la url en el panel de direccion de Thunder Client con el endpoint especifico
    - 10.4. Seleccione el metodo de la peticion segun corresponda
    - 10.5. Si es un metodo POST envie un objeto en formato JSON con la informacion requerida en la pestaña body de Thunder Client
+
+   ---
 ### Endpoints:
+
+---
+
 1. /allStorageNames:
    - UrlDefault: http://127.9.63.7:5000/testback/allStorageNames
    - Metodo: get
@@ -90,6 +95,8 @@ Ejercicio realizado con node.js para interactuar con una base de datos
      }
      ```
 Nota: Si desea ejecutar los ejemplos tenga en cuenta que puede que los id ya existan, sin embargo para hacerlo al enviar el objeto por el body unicamente deje depues de cada una de las propiedades del objeto los valores que se encuentran entre parentesis, mantenga las comillas si dichos valores las tienen.
+
+---
 
 # Creador: Andres David Elizalde Peralta
 
