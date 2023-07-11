@@ -24,37 +24,55 @@ export class inventarios {
 }
 __decorate([
     Expose({ name: "ID" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value }) => parseInt(value) ? value : "Error", { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "ID", void 0);
 __decorate([
     Expose({ name: "CANTIDAD" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value, key }) => { if (Math.floor(value))
+        return Math.floor(value);
+    else
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "CANTIDAD", void 0);
 __decorate([
     Expose({ name: "ID_BODEGA1" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value, key }) => { if (Math.floor(value))
+        return Math.floor(value);
+    else
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "ID_BODEGA1", void 0);
 __decorate([
     Expose({ name: "ID_BODEGA2" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value, key }) => { if (Math.floor(value))
+        return Math.floor(value);
+    else
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "ID_BODEGA2", void 0);
 __decorate([
     Expose({ name: "ID_INVENTARIO" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value, key }) => { if (Math.floor(value))
+        return Math.floor(value);
+    else
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "ID_INVENTARIO", void 0);
 __decorate([
     Expose({ name: "CREADOR" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value, key }) => { if (Math.floor(value))
+        return Math.floor(value);
+    else
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "CREADOR", void 0);
 __decorate([
     Expose({ name: "ACTUALIZADOR" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value, key }) => { if (Math.floor(value))
+        return Math.floor(value);
+    else
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], inventarios.prototype, "ACTUALIZADOR", void 0);
 __decorate([

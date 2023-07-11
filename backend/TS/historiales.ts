@@ -2,31 +2,31 @@ import { Expose, Type, Transform } from "class-transformer";
 
 export class inventarios {
     @Expose({ name: "ID" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value }) => parseInt(value) ? value : "Error", { toClassOnly: true })
     ID: number;
 
     @Expose({ name: "CANTIDAD" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
     CANTIDAD: number;
 
     @Expose({ name: "ID_BODEGA1" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
     ID_BODEGA1: number;
 
     @Expose({ name: "ID_BODEGA2" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
     ID_BODEGA2: number;
 
     @Expose({ name: "ID_INVENTARIO" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
     ID_INVENTARIO: number;
 
     @Expose({ name: "CREADOR" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
     CREADOR: number;
 
     @Expose({ name: "ACTUALIZADOR" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
     ACTUALIZADOR: number;
 
     @Expose({ name: "FECHA_CREACION" })

@@ -2,15 +2,15 @@ import { Expose, Type, Transform } from "class-transformer";
 
 export class user {
     @Expose({ name: "ID" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value }) => parseInt(value) ? value : "Error", { toClassOnly: true })
     ID: number;
 
     @Expose({ name: "NOMBRE" })
-    @Type(() => String)
+    @Transform(({ value, key }) => { if (/^[a-z A-Z]+$/.test(value)) return value; else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
     NOMBRE: string;
 
     @Expose({ name: "EMAIL" })
-    @Type(() => String)
+    @Transform(({ value, key }) => { if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value)) return value; else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
     EMAIL: string;
 
     @Expose({ name: "FECH_VERF_EMAIL" })
@@ -18,15 +18,15 @@ export class user {
     FECH_VERF_EMAIL: Date;
 
     @Expose({ name: "ESTADO" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
     ESTADO: number;
 
     @Expose({ name: "CREADOR" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
     CREADOR: number;
 
     @Expose({ name: "ACTUALIZADOR" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
     ACTUALIZADOR: number;
 
     @Expose({ name: "FOTO" })

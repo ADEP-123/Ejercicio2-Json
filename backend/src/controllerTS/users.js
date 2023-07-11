@@ -26,17 +26,23 @@ export class user {
 }
 __decorate([
     Expose({ name: "ID" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value }) => parseInt(value) ? value : "Error", { toClassOnly: true }),
     __metadata("design:type", Number)
 ], user.prototype, "ID", void 0);
 __decorate([
     Expose({ name: "NOMBRE" }),
-    Type(() => String),
+    Transform(({ value, key }) => { if (/^[a-z A-Z]+$/.test(value))
+        return value;
+    else
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", String)
 ], user.prototype, "NOMBRE", void 0);
 __decorate([
     Expose({ name: "EMAIL" }),
-    Type(() => String),
+    Transform(({ value, key }) => { if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value))
+        return value;
+    else
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", String)
 ], user.prototype, "EMAIL", void 0);
 __decorate([
@@ -46,17 +52,26 @@ __decorate([
 ], user.prototype, "FECH_VERF_EMAIL", void 0);
 __decorate([
     Expose({ name: "ESTADO" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value, key }) => { if (Math.floor(value))
+        return Math.floor(value);
+    else
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], user.prototype, "ESTADO", void 0);
 __decorate([
     Expose({ name: "CREADOR" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value, key }) => { if (Math.floor(value))
+        return Math.floor(value);
+    else
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], user.prototype, "CREADOR", void 0);
 __decorate([
     Expose({ name: "ACTUALIZADOR" }),
-    Transform(({ value }) => parseInt(value), { toClassOnly: true }),
+    Transform(({ value, key }) => { if (Math.floor(value))
+        return Math.floor(value);
+    else
+        throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
     __metadata("design:type", Number)
 ], user.prototype, "ACTUALIZADOR", void 0);
 __decorate([

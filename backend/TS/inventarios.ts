@@ -2,27 +2,27 @@ import { Expose, Type, Transform } from "class-transformer";
 
 export class inventarios {
     @Expose({ name: "ID" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value }) => parseInt(value) ? value : "Error", { toClassOnly: true })
     ID: number;
 
     @Expose({ name: "ID_BODEGA" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
     ID_BODEGA: number;
 
     @Expose({ name: "ID_PRODUCTO" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
     ID_PRODUCTO: number;
 
     @Expose({ name: "CANTIDAD" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
     CANTIDAD: number;
 
     @Expose({ name: "CREADOR" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
     CREADOR: number;
 
     @Expose({ name: "ACTUALIZADOR" })
-    @Transform(({ value }) => parseInt(value), { toClassOnly: true })
+    @Transform(({ value, key }) => { if (Math.floor(value)) return Math.floor(value); else throw { status: 400, message: `Error en tipo de parametro` } }, { toClassOnly: true })
     ACTUALIZADOR: number;
 
     @Expose({ name: "FECHA_CREACION" })
