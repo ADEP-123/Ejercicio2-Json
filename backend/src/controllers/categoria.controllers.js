@@ -209,7 +209,6 @@ const trasladoBodega = (req, res) => {
             res.status(500).json({ error: err.message });
         } else {
             const existe1 = data[0] == null ? false : true
-            // const horaCreac = data[0].created_at
             if (existe1 == true) {
                 const cantBodOrig = data[0].cantidad;
                 // res.json({

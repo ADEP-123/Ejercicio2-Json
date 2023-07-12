@@ -21,6 +21,6 @@ router.post("/newProduct", proxyproductos, categoriaController.newProduct);
 router.post("/newInventario",proxyinventarios, categoriaController.newInventario);
 
 //9. ENDPOINT QUE PERMITA TRASLADAR CANTIDADES DE UN PRODUCTO DE UNA BODEGA A OTRA, DEBE VALIDAD QUE LA CANTIDAD A TRASLADAR EXISTA EN AL BODEGA DE DONDE SALE SI NO ENVIAR UN MENSAJE
-router.post("/trasBodega", categoriaController.trasladoBodega);
+router.post("/trasBodega"categoriaController.trasladoBodega);
 
 export default router;
