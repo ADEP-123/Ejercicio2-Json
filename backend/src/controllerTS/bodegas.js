@@ -28,7 +28,7 @@ __decorate([
 ], bodegas.prototype, "ID", void 0);
 __decorate([
     Expose({ name: "NOMBRE" }),
-    Transform(({ value, key }) => { if (/^[a-z A-Z]+$/.test(value))
+    Transform(({ value, key }) => { if (/^[a-z A-Z]+$/.test(value) || value == null)
         return value;
     else
         throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
@@ -36,7 +36,7 @@ __decorate([
 ], bodegas.prototype, "NOMBRE", void 0);
 __decorate([
     Expose({ name: "RESPONSABLE" }),
-    Transform(({ value, key }) => { if (Math.floor(value))
+    Transform(({ value, key }) => { if (Math.floor(value) || value == null)
         return Math.floor(value);
     else
         throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
@@ -44,7 +44,7 @@ __decorate([
 ], bodegas.prototype, "RESPONSABLE", void 0);
 __decorate([
     Expose({ name: "ESTADO" }),
-    Transform(({ value, key }) => { if (Math.floor(value))
+    Transform(({ value, key }) => { if (Math.floor(value) || value == null)
         return Math.floor(value);
     else
         throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
@@ -52,7 +52,7 @@ __decorate([
 ], bodegas.prototype, "ESTADO", void 0);
 __decorate([
     Expose({ name: "CREADOR" }),
-    Transform(({ value, key }) => { if (Math.floor(value))
+    Transform(({ value, key }) => { if (Math.floor(value) || value == null)
         return Math.floor(value);
     else
         throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
@@ -60,7 +60,7 @@ __decorate([
 ], bodegas.prototype, "CREADOR", void 0);
 __decorate([
     Expose({ name: "ACTUALIZADOR" }),
-    Transform(({ value, key }) => { if (Math.floor(value))
+    Transform(({ value, key }) => { if (Math.floor(value) || value == null)
         return Math.floor(value);
     else
         throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),

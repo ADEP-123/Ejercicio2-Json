@@ -38,7 +38,7 @@ __decorate([
 ], productos.prototype, "DESCRIPCION", void 0);
 __decorate([
     Expose({ name: "ESTADO" }),
-    Transform(({ value, key }) => { if (Math.floor(value))
+    Transform(({ value, key }) => { if (Math.floor(value) || value == null)
         return Math.floor(value);
     else
         throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
@@ -46,7 +46,7 @@ __decorate([
 ], productos.prototype, "ESTADO", void 0);
 __decorate([
     Expose({ name: "CREADOR" }),
-    Transform(({ value, key }) => { if (Math.floor(value))
+    Transform(({ value, key }) => { if (Math.floor(value) || value == null)
         return Math.floor(value);
     else
         throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
@@ -54,7 +54,7 @@ __decorate([
 ], productos.prototype, "CREADOR", void 0);
 __decorate([
     Expose({ name: "ACTUALIZADOR" }),
-    Transform(({ value, key }) => { if (Math.floor(value))
+    Transform(({ value, key }) => { if (Math.floor(value) || value == null)
         return Math.floor(value);
     else
         throw { status: 400, message: `Error en tipo de parametro` }; }, { toClassOnly: true }),
