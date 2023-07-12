@@ -70,14 +70,12 @@ Ejercicio realizado con node.js para interactuar con una base de datos
      ```
 
 5. /newInventario:
-   - UrlDefault: http://127.9.63.7:5000/testback/newInventario
+   - UrlDefault: http://127.9.63.7:5000/testback/newInventario?ID_PRODUCTO=AQUIID&ID_BODEGA=AQUIID
    - Metodo: post
    - Descripcion: Endpoint que permite insertar un registro en la tabla inventarios, valida si la combinación bodega/producto existe
    - Body esperado:
      ```json
      {
-         "ID_PRODUCTO": Entero Grande ej (11),
-         "ID_BODEGA": Entero Grande ej (12),
          "CANTIDAD": Entero  ej (60)
      }
      ```
